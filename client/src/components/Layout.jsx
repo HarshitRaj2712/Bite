@@ -15,6 +15,7 @@ import {
   Flame,
   Sun,
   Moon,
+  Sparkles,
 } from 'lucide-react';
 import OfflineBadge from './OfflineBadge';
 
@@ -126,6 +127,10 @@ const Layout = () => {
               {theme === 'dark' ? (
                 <>
                   <Sun className="h-4 w-4 flex-shrink-0" /> <span className="truncate">Light</span>
+                </>
+              ) : theme === 'light' ? (
+                <>
+                  <Sparkles className="h-4 w-4 flex-shrink-0" /> <span className="truncate">Glass</span>
                 </>
               ) : (
                 <>

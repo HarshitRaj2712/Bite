@@ -3,8 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 export const applyTheme = (theme) => {
   if (typeof document === 'undefined') return;
 
-  const normalizedTheme = theme === 'light' ? 'light' : 'dark';
+  // Support 'dark', 'light', and 'glass' themes
+  const normalizedTheme = theme === 'light' || theme === 'glass' ? theme : 'dark';
   document.documentElement.dataset.theme = normalizedTheme;
+  // Manage helper classes for legacy styling
   document.documentElement.classList.toggle('dark', normalizedTheme === 'dark');
   document.documentElement.classList.toggle('light', normalizedTheme === 'light');
 };
@@ -34,7 +36,12 @@ const uiSlice = createSlice({
       state.sidebarOpen = action.payload;
     },
     toggleTheme: (state) => {
-      const nextTheme = state.theme === 'dark' ? 'light' : 'dark';
+      // Cycle through dark -> light -> glass -> dark
+      let nextTheme;
+      if (state.theme === 'dark') nextTheme = 'light';
+      else if (state.theme === 'light') nextTheme = 'glass';
+      else nextTheme = 'dark';
+
       state.theme = nextTheme;
       localStorage.setItem('theme', nextTheme);
       applyTheme(nextTheme);
