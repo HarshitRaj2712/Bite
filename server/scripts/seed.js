@@ -14,7 +14,6 @@ const seed = async () => {
   try {
     await connect();
 
-    // Check if users already exist
     const usersCount = await User.countDocuments();
     if (usersCount > 0) {
       console.log('Users already exist — skipping seeding users.');
