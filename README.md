@@ -17,7 +17,7 @@
 
 ## ✨ Key Features
 
-<details open>
+<details open> 
 <summary><b>📋 Core Features</b></summary>
 
 - ✅ **User Authentication** - Secure JWT-based authentication system
